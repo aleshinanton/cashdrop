@@ -1,19 +1,19 @@
 <template>
   <div class="login">
     <h3>Sign In</h3>
-    <input class="input" type="text" v-model="email" name="Email" placeholder="Email" required>
+    <mt-field class="input" type="text" v-model="email" name="Email" placeholder="Email" required></mt-field>
     <br>
-    <input
+    <mt-field
       class="input"
       type="password"
       v-model="password"
       name="Password"
       placeholder="Password"
       required
-    >
+    ></mt-field>
     <br>
-    <button @click="login">Login</button>
-    <router-link to="/registration" tag="button">Sign Up</router-link>
+    <mt-button @click="login">Login</mt-button>
+    <router-link to="/registration" tag="mt-button">Sign Up</router-link>
   </div>
 </template>
 

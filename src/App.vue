@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
+      <span>CashDrop</span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
+      <img src="./assets/iconfinder_14_3319630_128.png" alt="Vue.js PWA">
       <router-view></router-view>
     </main>
   </div>
@@ -34,6 +34,7 @@ main {
 }
 
 header {
+  text-align: center;
   margin: 0;
   height: 56px;
   padding: 0 16px 0 24px;

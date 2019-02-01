@@ -1,21 +1,21 @@
 <template>
   <div class="registration">
     <h3>Registration</h3>
-    <input class="input" type="name" v-model="name" name="Name" placeholder="Full Name" required>
+    <mt-field class="input" type="name" v-model="name" name="Name" placeholder="Full Name" required></mt-field>
     <br>
-    <input class="input" type="text" v-model="email" name="Email" placeholder="Email" required>
+    <mt-field class="input" type="text" v-model="email" name="Email" placeholder="Email" required></mt-field>
     <br>
-    <input
+    <mt-field
       class="input"
       type="password"
       v-model="password"
       name="Password"
       placeholder="Password"
       required
-    >
+    ></mt-field>
     <br>
-    <button @click="createAccount">Create Account</button>
-    <router-link to="/login" tag="button">Back to login</router-link>
+    <mt-button @click="createAccount">Create Account</mt-button>
+    <router-link to="/login" tag="mt-button">Back to login</router-link>
   </div>
 </template>
 
