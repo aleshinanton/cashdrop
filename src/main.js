@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import './plugins/vuetify'
 import App from './App'
 import router from './router'
 import firebase from 'firebase'
@@ -24,10 +25,18 @@ firebase.initializeApp(config)
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const currentUser = firebase.auth().currentUser
   if (requiresAuth) {
-    next('/login')
+    if (!currentUser) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
   } else {
-    next()
+    next() // всегда так или иначе нужно вызвать next()!
   }
 })
 

@@ -21,6 +21,7 @@
 
 <script>
   import firebase from 'firebase'
+  
   export default {
     name: 'registration',
     data () {
@@ -33,7 +34,7 @@
     methods: {
       createAccount () {
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
-          this.$router.replace('/login')
+          this.$router.push('/login')
         }).catch((err) => {
           alert(err.message)
         })

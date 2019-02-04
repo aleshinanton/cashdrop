@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" v-on:keyup.enter="login">
     <h3>Sign In</h3>
     <mt-field class="input" type="text" v-model="email" name="Email" placeholder="Email" required></mt-field>
     <br>
@@ -31,7 +31,7 @@
     methods: {
       login () {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
-          this.$router.replace('/home')
+          this.$router.push('/home')
         }).catch((err) => {
           alert(err.message)
         })
