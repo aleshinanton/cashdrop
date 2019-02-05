@@ -1,22 +1,33 @@
 <template>
-  <div id="app">
-    <header>
-      <span>CashDrop</span>
-    </header>
-    <main>
-      <img src="./assets/iconfinder_14_3319630_128.png" alt="Vue.js PWA">
-      <router-view></router-view>
-    </main>
-  </div>
+  <v-app>
+    <AppNavigation />
+    <v-content>
+      <v-container fluid>
+        <div id="app">
+          <header>
+            <span>CashDrop</span>
+          </header>
+          <main>
+            <img
+              src="./assets/iconfinder_14_3319630_128.png"
+              alt="Vue.js PWA"
+            >
+            <router-view />
+          </main>
+        </div>
+      </v-container>
+    </v-content>
+    <v-footer app />
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import AppNavigation from './components/AppNavigation'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AppNavigation
   },
   data () {
     return {
@@ -29,7 +40,7 @@ export default {
 <style>
 body {
   margin: 0;
-  }
+}
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

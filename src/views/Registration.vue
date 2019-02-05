@@ -1,46 +1,71 @@
 <template>
   <div class="registration">
     <h3>Registration</h3>
-    <mt-field class="input" type="name" v-model="name" name="Name" placeholder="Full Name" required></mt-field>
-    <br>
-    <mt-field class="input" type="text" v-model="email" name="Email" placeholder="Email" required></mt-field>
+    <mt-field
+      v-model="name"
+      class="input"
+      type="name"
+      name="Name"
+      placeholder="Full Name"
+      required
+    />
     <br>
     <mt-field
+      v-model="email"
+      class="input"
+      type="text"
+      name="Email"
+      placeholder="Email"
+      required
+    />
+    <br>
+    <mt-field
+      v-model="password"
       class="input"
       type="password"
-      v-model="password"
       name="Password"
       placeholder="Password"
       required
-    ></mt-field>
+    />
     <br>
-    <mt-button @click="createAccount">Create Account</mt-button>
-    <router-link to="/login" tag="mt-button">Back to login</router-link>
+    <mt-button @click="createAccount">
+      Create Account
+    </mt-button>
+    <router-link
+      to="/login"
+      tag="mt-button"
+    >
+      Back to login
+    </router-link>
   </div>
 </template>
 
 <script>
-  import firebase from 'firebase'
-  
-  export default {
-    name: 'registration',
-    data () {
-      return {
-        name: '',
-        email: '',
-        password: ''
-      }
-    },
-    methods: {
-      createAccount () {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
+import firebase from 'firebase'
+
+export default {
+  name: 'Registration',
+  data () {
+    return {
+      name: '',
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    createAccount () {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(user => {
           this.$router.push('/login')
-        }).catch((err) => {
+        })
+        .catch(err => {
           alert(err.message)
         })
-      }
     }
   }
+}
 </script>
 
 <style scoped>

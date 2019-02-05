@@ -1,5 +1,6 @@
 {
   "projects": {
-    "y": "cashdrop-7"
+    "y": "cashdrop-7",
+    "default": "cashdrop-7"
   }
 }

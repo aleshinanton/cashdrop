@@ -2,26 +2,42 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: "vue-eslint-parser",
   parserOptions: {
-    sourceType: 'module'
+    sourceType: "module",
+    ecmaVersion: 2018,
+    ecmaFeatures: {
+      "globalReturn": false,
+      "impliedStrict": false,
+      "jsx": false
+    }
   },
+
   env: {
     browser: true,
+    node: true
   },
+
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  extends: ['standard', 'plugin:vue/recommended'],
+
   // required to lint *.vue files
   plugins: [
-    'html'
+    'vue'
   ],
+
   // add your custom rules here
-  'rules': {
-    // allow paren-less arrow functions
+  'rules': [
+    'standard',
+    'plugin:vue/recommended',
+    'plugin:vue/essential',
+    '@vue/standard'
+  ],
+
+  rules: {
     'arrow-parens': 0,
-    // allow async-await
     'generator-star-spacing': 0,
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
 }

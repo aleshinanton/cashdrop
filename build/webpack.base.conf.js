@@ -3,7 +3,14 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
-const vueLoaderConfig = require('./vue-loader.conf')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+const NODE_ENV = process.env.NODE_ENV;
+
+const buildingForLocal = () => {
+  return (NODE_ENV === 'development');
+};
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -13,6 +20,18 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  mode: buildingForLocal() ? 'development' : 'production',
+  devServer: {
+    historyApiFallback: true,
+    noInfo: false
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
+  ],
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -40,8 +59,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -71,6 +89,10 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       }
     ]
   }

@@ -1,43 +1,64 @@
 <template>
-  <div class="login" v-on:keyup.enter="login">
+  <div
+    class="login"
+    @keyup.enter="login"
+  >
     <h3>Sign In</h3>
-    <mt-field class="input" type="text" v-model="email" name="Email" placeholder="Email" required></mt-field>
+    <mt-field
+      v-model="email"
+      class="input"
+      type="text"
+      name="Email"
+      placeholder="Email"
+      required
+    />
     <br>
     <mt-field
+      v-model="password"
       class="input"
       type="password"
-      v-model="password"
       name="Password"
       placeholder="Password"
       required
-    ></mt-field>
+    />
     <br>
-    <mt-button @click="login">Login</mt-button>
-    <router-link to="/registration" tag="mt-button">Sign Up</router-link>
+    <mt-button @click="login">
+      Login
+    </mt-button>
+    <router-link
+      to="/registration"
+      tag="mt-button"
+    >
+      Sign Up
+    </router-link>
   </div>
 </template>
 
 <script>
-  import firebase from 'firebase'
+import firebase from 'firebase'
 
-  export default {
-    name: 'login',
-    data: function () {
-      return {
-        email: '',
-        password: ''
-      }
-    },
-    methods: {
-      login () {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
+export default {
+  name: 'Login',
+  data: function () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login () {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(user => {
           this.$router.push('/home')
-        }).catch((err) => {
+        })
+        .catch(err => {
           alert(err.message)
         })
-      }
     }
   }
+}
 </script>
 
 <style scoped>
@@ -59,7 +80,3 @@ p a {
   cursor: pointer;
 }
 </style>
-
-
-
-
