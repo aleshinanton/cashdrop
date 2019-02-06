@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/views/Login'
-import Registration from '@/views/Registration'
+import Security from './security'
+import Home from '@/views/Home'
+const Registration = () => Promise.resolve({ Registration })
 
 Vue.use(Router)
 
@@ -9,22 +11,16 @@ export default new Router({
   routes: [
     {
       path: '*',
-      redirect: '/login'
-    },
-    {
-      path: '/',
-      redirect: '/login'
+      redirect: '/home'
     },
     {
       path: '/home',
-      name: 'home',
+      name: 'Home',
       component: Home,
-      meta: {
-        requiresAuth: true
-      }
+      beforeEnter: Security
     },
     {
-      path: '/Login',
+      path: '/login',
       name: 'Login',
       component: Login
     },
@@ -33,5 +29,6 @@ export default new Router({
       name: 'Registration',
       component: Registration
     }
-  ]
+  ],
+  mode: 'history'
 })

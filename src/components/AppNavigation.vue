@@ -1,28 +1,31 @@
 <template>
   <v-toolbar app>
-    <v-btn>Sign Out</v-btn>
+    <v-btn
+      v-if="userIsAuthenticated"
+      @click="signOut()"
+    >
+      <v-icon>exit_to_app</v-icon>
+      Sign Out
+    </v-btn>
   </v-toolbar>
 </template>
 
 <script>
-import firebase from 'firebase'
-
 export default {
   name: 'Appnavigation',
   data: function () {
-    return {}
+    return {
+    }
+  },
+  computed: {
+    userIsAuthenticated () {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    }
   },
   methods: {
-    login () {
-      firebase
-        .auth()
-        .signOut()
-        .then(x => {
-          this.$router.push('/login')
-        })
-        .catch(err => {
-          alert(err.message)
-        })
+    signOut () {
+      this.$store.dispatch('signout')
+      this.$router.push('/')
     }
   }
 }

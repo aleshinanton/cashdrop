@@ -1,23 +1,10 @@
 <template>
   <v-app>
     <AppNavigation />
-    <v-content>
-      <v-container fluid>
-        <div id="app">
-          <header>
-            <span>CashDrop</span>
-          </header>
-          <main>
-            <img
-              src="./assets/iconfinder_14_3319630_128.png"
-              alt="Vue.js PWA"
-            >
-            <router-view />
-          </main>
-        </div>
-      </v-container>
-    </v-content>
     <v-footer app />
+    <v-content>
+      <router-view />
+    </v-content>
   </v-app>
 </template>
 
@@ -31,7 +18,6 @@ export default {
   },
   data () {
     return {
-      //
     }
   }
 }
