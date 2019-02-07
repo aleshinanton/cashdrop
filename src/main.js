@@ -33,10 +33,8 @@ new Vue({
     firebase.initializeApp(config)
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('1')
         this.$store.dispatch('autoLoginIn', user)
       }
-      console.log('2')
     })
   },
   template: '<App/>'

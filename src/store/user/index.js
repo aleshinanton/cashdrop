@@ -14,20 +14,18 @@ export default {
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           x => {
-            console.log(x)
             const newUser = {
               id: x.user.uid,
               name: x.user.displayName,
               email: x.user.email,
               photoUrl: x.user.photoURL
             }
-            console.log(newUser)
             commit('setUser', newUser)
           }
         )
         .catch(
           error => {
-            console.log(error)
+            alert(error)
           }
         )
     },
